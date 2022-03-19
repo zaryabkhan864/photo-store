@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 import AddPhoto from './AddPhoto';
 import Title from './Title';
 import { Route, Router, Routes } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 
 class Main extends Component {
+
   constructor() {
     console.log('constructor')
     super()
@@ -43,10 +45,13 @@ class Main extends Component {
       allPhotos: this.state.allPhotos.filter((photo) => photo !== photoRemoved)
     }))
   }
-  addPhoto(photoSubmitted){
-    this.setState(state =>({
+  addPhoto(photoSubmitted) {
+    const navigate = useNavigate();
+    this.setState(state => ({
       allPhotos: state.allPhotos.concat([photoSubmitted])
     }))
+    // here define route
+    navigate('/');
   }
   componentDidMount() {
 
@@ -57,15 +62,18 @@ class Main extends Component {
     console.log(preState.allPhotos)
     console.log(this.state)
   }
+
   render() {
+
     console.log('Render')
     return (
+//update file
       <div>
         <Routes>
-        <Route exact path="/" element={<><Title todo={'PhotoFrame'} /> <PhotoFrame PhotoBlock={this.state.allPhotos} onRemovePhoto={this.removePhoto} /></>}/>
-          <Route path="/AddPhoto" element={<AddPhoto onAddPhoto={(addedPhoto)=>{
-            console.log(addedPhoto)
-          }}/>} />
+          <Route exact path="/" element={<><Title todo={'PhotoFrame'} /> <PhotoFrame PhotoBlock={this.state.allPhotos} onRemovePhoto={this.removePhoto} /></>} />
+          <Route path="/AddPhoto" element={<AddPhoto onAddPhoto={(addedPhoto) => {
+            this.addPhoto(addedPhoto)
+          }} />} />
         </Routes>
       </div>
 

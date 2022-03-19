@@ -3,9 +3,9 @@ import React, {Component} from 'react'
 class AddPhoto extends Component{
     constructor(){
         super()
-        this.handlesSubmit = this.handlesSubmit.bind(this)
+        this.handlesSubmit = this.handleSubmit.bind(this)
     }
-    handlesSubmit(event){
+    handleSubmit(event){
         event.preventDefault();
         const imageLink = event.target.elements.link.value
         const description = event.target.elements.description.value
@@ -14,10 +14,10 @@ class AddPhoto extends Component{
             description:description,
             imageLink:imageLink
         }
-        console.log(photo)
+        // console.log(photo)
         if( description && imageLink ){
-            // this.props.onAddphoto(photo)
-            this.props.onAddPhoto()
+            this.props.onAddPhoto(photo)
+            // this.props.onAddPhoto()
         }
     }
     render(){
