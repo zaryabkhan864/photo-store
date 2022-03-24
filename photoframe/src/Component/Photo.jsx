@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from 'prop-types'
 import '../Styles/Style.css'
-
+import{connect} from 'react-redux'
 
 function Photo(props){
+    console.log(props.allPhotos)
     const frame = props.finalPhoto;
     return(
         <figure className="figure">
@@ -11,7 +12,8 @@ function Photo(props){
         <figcaption><p>{frame.description}</p></figcaption>
         <div className="button-container"><button className="remove-button" onClick={
             ()=>{
-                props.onRemovePhoto(frame)
+                // props.onRemovePhoto(frame)
+                props.onRemovePhoto(1)
             }
         }>Remove</button></div>
      
@@ -19,9 +21,14 @@ function Photo(props){
     )
 }
 Photo.propTypes = {
-    onRemovePhoto: PropTypes.func.isRequired,
+    // onRemovePhoto: PropTypes.func.isRequired,
     finalPhoto:PropTypes.object.isRequired
+}
+function mapStateToProps (state){
+    return{
+        allPhotos : state
+    }
 }
 
 
-export default Photo
+export default connect(mapStateToProps)(Photo) 

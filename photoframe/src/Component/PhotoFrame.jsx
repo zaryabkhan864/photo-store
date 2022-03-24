@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Photo from "./Photo";
+import PropTypes from 'prop-types'
 
 function PhotoFrame(props) {
     return (
@@ -8,7 +9,14 @@ function PhotoFrame(props) {
             <Link className="addIcon" to="/AddPhoto"></Link>
             {/* <button className="addIcon">+</button> */}
             <div className="photo-grid">
-                {props.PhotoBlock.map((singlePhoto, index) => <Photo key={index} onRemovePhoto={props.onRemovePhoto} finalPhoto={singlePhoto} />
+                {props.allPhotos
+                .sort(function(x,y){
+                    return y.id - x.id
+                })
+                .map((singlePhoto, index) => <Photo key={index}
+                {...props}
+                //  onRemovePhoto={props.onRemovePhoto}
+                  finalPhoto={singlePhoto} />
                 )}
             </div>
 
@@ -18,5 +26,9 @@ function PhotoFrame(props) {
 
 }
 
+PhotoFrame.propTypes = {
+    allPhotos: PropTypes.array.isRequired
+
+}
 
 export default PhotoFrame
