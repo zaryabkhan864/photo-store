@@ -3,14 +3,15 @@ import PhotoFrame from "./PhotoFrame";
 import PropTypes from "prop-types";
 import AddPhoto from "./AddPhoto";
 import Title from "./Title";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import { withRouter } from "../Component/withRouter";
-import {removePhoto} from '../redux/action'
+import { removePhoto } from '../redux/action'
 
 
 class Main extends Component {
 
   constructor() {
+
     console.log("constructor");
     super();
     // this.state = {
@@ -39,6 +40,10 @@ class Main extends Component {
     // this.removePhoto = this.removePhoto.bind(this);
 
   }
+  yourFunctionHere()
+  {
+      this.props.navigate('/')
+  }
   // removePhoto(photoRemoved) {
   //   console.log(photoRemoved.description);
   //   this.setState((state) => ({
@@ -59,27 +64,26 @@ class Main extends Component {
   //   console.log(preState.allPhotos);
   //   console.log(this.state);
   // }
-  componentDidMount(){
-    // this.props.disptachPhoto(removePhoto(1))
-    this.props.dispatch(removePhoto(1))
-  }
+  // componentDidMount(){
+  //   // this.props.disptachPhoto(removePhoto(1))
+  //   this.props.removePhoto(1)
+  // }
   render() {
 
     console.log("Render");
     return (
-//update file
+      //update file
       <div>
+        <h1>
+          <Link to="/">PhotoFrame</Link>
+        </h1>
         <Routes>
-        <Route
-            exact
-            path='/'
-            element={
+          <Route exactpath='/' element={
               <>
-                <Title todo={"PhotoFrame"} />{" "}
                 <PhotoFrame
                   // PhotoBlock={this.props.allPhotos}
                   {...this.props}
-                  // onRemovePhoto={this.removePhoto}
+                // onRemovePhoto={this.removePhoto}
                 />
               </>
             }
@@ -94,6 +98,12 @@ class Main extends Component {
               />
             }
           /> */}
+          <Route
+            path='/AddPhoto'
+            element={
+              <AddPhoto {...this.props} />
+            }
+          />
         </Routes>
       </div>
 

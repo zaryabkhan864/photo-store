@@ -1,6 +1,6 @@
 import Main from './Main'
 import{connect} from 'react-redux'
-import { removePhoto } from '../redux/action'
+import * as actions from '../redux/action'
 import {bindActionCreators} from 'redux'
 function mapStateToProps (state){
     return{
@@ -8,7 +8,7 @@ function mapStateToProps (state){
     }
 }
 function mapDisptachToProps(disptach){
-    return bindActionCreators({removePhoto},disptach)
+    return bindActionCreators({actions},disptach)
 }
 
 const App = connect(mapStateToProps,mapDisptachToProps)(Main)

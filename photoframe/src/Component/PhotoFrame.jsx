@@ -15,6 +15,7 @@ function PhotoFrame(props) {
                 })
                 .map((singlePhoto, index) => <Photo key={index}
                 {...props}
+                index={index}
                 //  onRemovePhoto={props.onRemovePhoto}
                   finalPhoto={singlePhoto} />
                 )}

@@ -16,19 +16,21 @@ class AddPhoto extends Component{
         }
         // console.log(photo)
         if( description && imageLink ){
-            this.props.onAddPhoto(photo)
+            this.props.addPhoto(photo)
+            // this.props.onAddPhoto(photo)
             // this.props.onAddPhoto()
+            this.props.navigate('/')
         }
     }
     render(){
         return(
           <div>
-              <h1>photo frame</h1>
+              {/* <h1>photo frame</h1> */}
               <div className='form'>
                   <form onSubmit={this.handlesSubmit}>
                      <input type="text" placeholder='Link' name='link'/>
                      <input type="text" placeholder='Description' name='description'/>
-                     <button>Submit</button>
+                     <button onClick={this.yourFunctionHere}>Submit</button>
                   </form>
               </div>
           </div>
